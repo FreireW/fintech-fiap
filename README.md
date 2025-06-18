@@ -16,9 +16,8 @@ Assistente Financeiro (IA-FIN) com dicas baseadas em movimentações, site 100% 
 Tecnologias Utilizadas
 
 - HTML5
-- CSS3 (arquivo separado)
-- Bootstrap 5
-- Bootstrap Icons
+- CSS3 
+- Bootstrap 
 - Chart.js
 
 Interface
