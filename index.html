@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FluxPay - App</title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-navy text-white">
+
+  <!-- Header -->
+  <header class="bg-navy-dark text-white p-3 d-flex justify-content-between align-items-center border-bottom border-gold">
+    <div class="d-flex align-items-center">
+      <img src="https://www.svgrepo.com/show/384674/account-avatar-profile-user-11.svg" alt="Avatar" width="40" class="rounded-circle me-3" />
+      <div>
+        <h6 class="mb-0 fw-semibold">Olá, Weslley 👋</h6>
+        <small class="text-gold">Seja bem-vindo de volta</small>
+      </div>
+    </div>
+    <i class="bi bi-bell-fill fs-5 text-gold"></i>
+  </header>
+
+  <!-- Main -->
+  <main class="container py-4">
+
+    <!-- Saldo principal -->
+    <div class="card bg-navy-dark text-white border-gold shadow mb-3">
+      <div class="card-body text-center">
+        <h5 class="card-title text-gold">Saldo Disponível</h5>
+        <p class="fs-3">R$ 3.250,00</p>
+      </div>
+    </div>
+
+    <!-- Entradas e Saídas -->
+    <div class="row g-3 mb-4">
+      <div class="col-6">
+        <div class="card bg-success text-white shadow-sm text-center">
+          <div class="card-body">
+            <h6 class="card-title mb-1">Entradas</h6>
+            <p class="fs-5 mb-0">R$ 1.200</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card bg-danger text-white shadow-sm text-center">
+          <div class="card-body">
+            <h6 class="card-title mb-1">Saídas</h6>
+            <p class="fs-5 mb-0">R$ 480</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico -->
+    <div class="card bg-navy-dark text-white border-gold shadow-sm mb-4">
+      <div class="card-body">
+        <h6 class="text-gold">Fluxo Financeiro (6 meses)</h6>
+        <canvas id="graficoLinha"></canvas>
+      </div>
+    </div>
+
+    <!-- Extrato -->
+    <div class="card shadow-sm mb-4">
+  <!-- Cabeçalho do extrato -->
+  <div class="card-header bg-navy-dark text-white border-bottom border-gold">
+    <h6 class="text-gold mb-0"><i class="bi bi-list-ul me-2"></i>Extrato Recentes</h6>
+  </div>
+  <!-- Itens do extrato -->
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item d-flex justify-content-between">
+      <div>
+        <strong>PIX - Transferência</strong><br /><small>10/06 - João Silva</small>
+      </div>
+      <span class="text-success">+ R$ 820,00</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+      <div>
+        <strong>Uber</strong><br /><small>09/06 - Corrida SP</small>
+      </div>
+      <span class="text-success">+ R$ 350,00</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+      <div>
+        <strong>Conta de Luz</strong><br /><small>08/06 - Enel</small>
+      </div>
+      <span class="text-danger">- R$ 120,00</span>
+    </li>
+  </ul>
+</div>
+    <!-- Assistente Financeiro -->
+    <div class="card bg-navy-dark text-white border-gold shadow-sm mb-5">
+      <div class="card-body">
+        <div class="mb-3">
+          <h6 class="text-gold m-0"><i class="bi bi-robot me-2"></i>IA-FIN (Assistente)</h6>
+        </div>
+
+        <div class="alert alert-dark border-warning d-flex align-items-center mb-2">
+          <i class="bi bi-graph-down me-2 text-warning"></i>
+          Seus gastos com lazer estão 15% acima da média.
+        </div>
+
+        <div class="alert alert-dark border-info d-flex align-items-center mb-2">
+          <i class="bi bi-lightbulb-fill me-2 text-info"></i>
+          Dica: Ative economia automática semanal.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav bg-navy-dark border-top border-gold">
+    <div class="d-flex justify-content-around text-center">
+      <a href="#" class="nav-item-mobile active"><i class="bi bi-house-door-fill"></i><span>Início</span></a>
+      <a href="#" class="nav-item-mobile"><i class="bi bi-list-ul"></i><span>Extrato</span></a>
+      <a href="#" class="nav-item-mobile"><i class="bi bi-robot"></i><span>IA-FIN</span></a>
+      <a href="#" class="nav-item-mobile"><i class="bi bi-person"></i><span>Perfil</span></a>
+    </div>
+  </nav>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('graficoLinha').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+        datasets: [{
+          label: 'Saldo',
+          data: [1200, 1800, 1500, 2000, 2500, 3250],
+          borderColor: '#f5c518',
+          backgroundColor: 'rgba(245, 197, 24, 0.1)',
+          fill: true,
+          tension: 0.3
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
