@@ -24,3 +24,6 @@ Tecnologias Utilizadas
 Interface
 
 A interface foi inspirada em apps bancários reais, com foco em clareza, contraste e experiência mobile.
+
+Acesse a demonstração do projeto online:
+https://freirew.github.io/fintech-fiap/
